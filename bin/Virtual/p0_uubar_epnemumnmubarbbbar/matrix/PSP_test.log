@@ -1,0 +1,153 @@
+
+  +----------------------------------------------------------------+
+  |                                                                |
+  |  Ninja - version 1.0.0                                         |
+  |                                                                |
+  |  Author: Tiziano Peraro                                        |
+  |                                                                |
+  |  Based on:                                                     |
+  |                                                                |
+  |      P. Mastrolia, E. Mirabella and T. Peraro,                 |
+  |      "Integrand reduction of one-loop scattering amplitudes    |
+  |      through Laurent series expansion,"                        |
+  |      JHEP 1206 (2012) 095  [arXiv:1203.0291 [hep-ph]].         |
+  |                                                                |
+  |      T. Peraro,                                                |
+  |      "Ninja: Automated Integrand Reduction via Laurent         |
+  |      Expansion for One-Loop Amplitudes,"                       |
+  |      arXiv:1403.1229 [hep-ph]                                  |
+  |                                                                |
+  +----------------------------------------------------------------+
+
+
+ No file 'param.dat' found. Using defaults
+
+  ********************************************************************
+  ********************** SAMURAI - version 2.9.1
+  ********************************************************************
+  *                                                                  *
+  *                                                                  *
+  * Authors: H. van Deurzen, P. Mastrolia,                           *
+  *          E. Mirabella, G. Ossola, and F. Tramontano              *
+  *                                                                  *
+  * hdeurzen@mpp.mpg.de                                              *
+  * pierpaolo.mastrolia@cern.ch                                      *
+  * mirabell@mpp.mpg.de                                              *
+  * gossola@citytech.cuny.edu                                        *
+  * francesco.tramontano@cern.ch                                     *
+  *                                                                  *
+  *  Based on:                                                       *
+  *    - Mastrolia, Ossola, Reiter, Tramontano,                      *
+  *      JHEP 1008 (2010) 080, arXiv:1006.0710                       *
+  *    - van Deurzen, Acta Phys.Polon. B44 (2013) 11, 2223-2230      *
+  *                                                                  *
+  *  On the web:  http://cern.ch/samurai                             *
+  *                                                                  *
+  ********************************************************************
+  *                                                                  *
+  * output files: <output.log>   [ for verbosity.gt.0 ]              *
+  *                                                                  *
+  *               <bad.points>   [ for itest.gt.0     ]              *
+  *                                                                  *
+  ********************************************************************
+########################################################################
+#                                                                      #
+#                      You are using OneLOop-3.5                       #
+#                                                                      #
+# for the evaluation of 1-loop scalar 1-, 2-, 3- and 4-point functions #
+#                                                                      #
+# author: Andreas van Hameren <hamerenREMOVETHIS@ifj.edu.pl>           #
+#   date: 14-05-2014                                                   #
+#                                                                      #
+# Please cite                                                          #
+#    A. van Hameren,                                                   #
+#      Comput.Phys.Commun. 182 (2011) 2427-2438, arXiv:1007.4716       #
+#    A. van Hameren, C.G. Papadopoulos and R. Pittau,                  #
+#      JHEP 0909:106,2009, arXiv:0903.4665                             #
+# in publications with results obtained with the help of this program. #
+#                                                                      #
+########################################################################
++------------------------------------------------------------------------+
+|   __   __   ___   __   __  __                   GoSam                  |
+|  / _) /  \ / __) (  ) (  \/  )          An Automated One-Loop          |
+| ( (/\( () )\__ \ /__\  )    (          Matrix Element Generator        |
+|  \__/ \__/ (___/(_)(_)(_/\/\_)          Version 2.0.2 Rev: 865         |
+|                                                                        |
+|                                 (c) The GoSam Collaboration 2011-2015  |
+|                                                                        |
+|  AUTHORS:                                                              |
+|  * Hans van Deurzen                  <hdeurzen@mpp.mpg.de>             |
+|  * Nicolas Greiner                   <greiner@mpp.mpg.de>              |
+|  * Gudrun Heinrich                   <gudrun@mpp.mpg.de>               |
+|  * Gionata Luisoni                   <luisonig@mpp.mpg.de>             |
+|  * Pierpaolo Mastrolia               <Pierpaolo.Mastrolia@cern.ch>     |
+|  * Giovanni Ossola                   <gossola@citytech.cuny.edu>       |
+|  * Tiziano Peraro                    <peraro@mpp.mpg.de>               |
+|  * Johannes Schlenk                  <jschlenk@mpp.mpg.de>             |
+|  * Johann Felix von Soden-Fraunhofen <jfsoden@mpp.mpg.de>              |
+|  * Francesco Tramontano              <Francesco.Tramontano@cern.ch>    |
+|                                                                        |
+|  FORMER AUTHORS:                                                       |
+|  * Gavin Cullen                      <gavin.cullen@desy.de>            |
+|  * Edoardo Mirabella                 <mirabell@mpp.mpg.de>             |
+|  * Joscha Reichel                    <joscha@mpp.mpg.de>               |
+|  * Thomas Reiter                     <reiterth@mpp.mpg.de>             |
+|                                                                        |
+|  This program is free software: you can redistribute it and/or modify  |
+|  it under the terms of the GNU General Public License either           |
+|  version 3, or (at your option) any later version.                     |
+|                                                                        |
+|  Scientific publications prepared using the present version of         |
+|  GoSam or any modified version of it or any code linking to GoSam      |
+|  or parts of it should make a clear reference to the publication:      |
+|                                                                        |
+|      G. Cullen et al.,                                                 |
+|      ``GoSam-2.0: a tool for automated one-loop calculations           |
+|                        within the Standard Model and Beyond'',         |
+|      Eur. Phys. J. C 74 (2014) 8,  3001                                |
+|      [arXiv:1404.7096 [hep-ph]].                                       |
++------------------------------------------------------------------------+
+ Particle            1   250.00000000000000        0.0000000000000000        0.0000000000000000       -250.00000000000000     
+ Particle            2   250.00000000000000        0.0000000000000000        0.0000000000000000        250.00000000000000     
+ Particle            3   44.981319427490234        27.807657241821289       -19.967630386352539       -29.177852630615234     
+ Particle            4   48.566886901855469       -5.4349575042724609       -19.575448989868164        44.113555908203125     
+ Particle            5   81.944000244140625        35.509738922119141        57.008819580078125       -46.945415496826172     
+ Particle            6   75.442489624023438       -13.216336250305176       -1.1770646572113037       -74.266494750976562     
+ Particle            7   156.44306945800781       -88.783554077148438       -95.324417114257812        86.632385253906250     
+ Particle            8   92.622230529785156        44.117454528808594        79.035743713378906        19.643819808959961     
+#  --------- SETUP ---------
+# renormalisation =  1
+# scheme = CDR
+# reduction with NINJA
+# rescue with GOLEM95
+#  --- PARAMETER VALUES ---
+# Boson masses 
+# mZ =   91.18760000000000    
+# mW =   80.39900000000000    
+# mH =   125.0000000000000    
+# wZ =   2.509660000000000    
+# wW =   2.099740000000000    
+# wH =   0.000000000000000    
+# Active light quarks:
+# Nf    =  5.000000000000000    
+# Nfgen = -1.000000000000000    
+# Fermion masse
+# mc   =   0.000000000000000    
+# mb   =   0.000000000000000    
+# mbMS =   4.200000000000000    
+# wb   =   0.000000000000000    
+# mt   =   172.0000000000000    
+# wt   =   1.442600000000000    
+# mtau =   1.776840000000000    
+# wtau =   0.000000000000000    
+# -------------------------
+# Renormalisation scale:
+# mu =   172.0000000000000    
+# -------------------------
+#               LO:  0.1001075987993546    
+# NLO, finite part:  -1.377496468114184    
+# NLO, single pole:  -4.552305304918501    
+# NLO, double pole:  -5.333334324241585    
+# IR,  single pole:  -4.552301173573650    
+# IR,  double pole:  -5.333333333333333    
+#  Time/Event [ms]:                  33.243

@@ -1,0 +1,33 @@
+  
+  -------------------------------------------------------
+                        qgraf-3.1.4
+  -------------------------------------------------------
+  
+ output = 'diagrams-1.hh';
+ style = 'form.sty';
+ model = 'model';
+ in = U[k1], Ubar[k2];
+ out = ep[k3], ne[k4], mum[k5], nmubar[k6], B[k7], Bbar[k8];
+ loops=1;
+ loop_momentum=p;
+ options=onshell, notadpole, nosnail;
+ true=iprop[phim,phip,chi,H,ep,em,ne,nebar,mup,mum,nmu,nmubar,0,0];
+ true=vsum[QCD,4,4];
+ true=vsum[QED,4,4];
+  
+  -------------------------------------------------------
+  
+   24P  ---  7+  17-  ---  5N+  2C+  17C-
+  
+   145V  ---  3^118  4^27
+  
+  -------------------------------------------------------
+  
+    -   4^4  ---  0 diagrams
+   3^2  4^3  ---  0 diagrams
+   3^4  4^2  ---  0 diagrams
+   3^6  4^1  ---  0 diagrams
+   3^8   -   ---  424 diagrams
+  
+   total =  424 diagrams
+  
