@@ -13,7 +13,7 @@
   mZ:=91.1876;
   mW:=80.399;
   mH:=125.0;
-  wT:=1.4426;
+  wT:=1.3367;
   wZ:=2.50966;
   wW:=2.09974;
   wH:=0.0;
@@ -95,7 +95,7 @@
   K_PERP_MEAN_1 0.; K_PERP_SIGMA_1 0.;
   K_PERP_MEAN_2 0.; K_PERP_SIGMA_2 0.;
 
-  PARTICLE_CONTAINER 98 instate 2 -2;
+  PARTICLE_CONTAINER 98 instate 1 -1 2 -2 3 -3 4 -4 21;
 }(run);
 
 (processes){
@@ -112,10 +112,18 @@
 }(processes);
 
 (selector){
+  FastjetFinder antikt 2 30.0 0 0.5 0.75 2.5 100 2 -1;
+  
+  PT  -11  20.0  E_CMS
+  PT   13  20.0  E_CMS
+  PseudoRapidity  -11  -2.5  2.5
+  PseudoRapidity   13  -2.5  2.5
+
+  PT2NLO 12 -14 20.0 E_CMS
 }(selector)
 
 (integration){
-  PSI_NMAX 100;
+#  PSI_NMAX 100;
 }(integration);
 
 (analysis){
