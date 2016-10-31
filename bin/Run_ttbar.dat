@@ -1,11 +1,13 @@
 (run){
   % general settings
   RUNNAME=TTJ_2MT
-  EVENTS 5M; ERROR 0.05;
+  EVENTS 500000; ERROR 0.05;
   RANDOM_SEED RNDSEED;
   BATCH_MODE=2;
   # RLIMIT_AS=32GB;
   # RLIMIT_BY_CPU=1;
+  ANALYSIS = Rivet;
+  Ecm:=3500;
 
   % tags for model
   mB:=0.0;
@@ -18,20 +20,23 @@
   wW:=2.09974;
   wH:=0.0;
 
+#  DECAYMODEL = Off;
+
   % tags and settings for scale definitions
   SCF:=1.0; FSF:=SCF; RSF:=SCF;
-  FAC_SCALE2:=sqr(FSF)*sqr(mT/2);
-  REN_SCALE2:=sqr(RSF)*sqr(mT/2);
-  SCALES VAR{FAC_SCALE2}{REN_SCALE2};
+  FACSCALE2:=sqr(FSF)*H_T2/4;
+  RENSCALE2:=sqr(RSF)*H_T2/4;
+  SCALES VAR{FACSCALE2}{RENSCALE2};
 
   % tags and settings for ME generators
   DIPAL:=1.0;
   DIPKAP:=1.0;
   NLOPART:=BVIRS;
+  NLOMODE:=Fixed_Order;
   LOOPGEN:=LHOLE;
   ME_SIGNAL_GENERATOR   Amegic LOOPGEN;
   EVENT_GENERATION_MODE Weighted;
-  RESULT_DIRECTORY      Results/Res_RUNNAME_jNJET_NLOPART_dDIPAL_s1.0/;
+  RESULT_DIRECTORY      Results/Res_RUNNAME_jNJET_NLOPART_Ecm_FACSCALE2_d1.0_s1.0;
   DIPOLE_ALPHA          DIPAL;
   DIPOLE_KAPPA          DIPKAP;
   DIPOLE_NF_GSPLIT      4;
@@ -67,10 +72,12 @@
   WIDTH[25]=wH;
   ACTIVE[25]=0;
 
+  EVENT_OUTPUT=HepMC_Short[WWbB_25.10.16];
+
   % analysis settings
-  ANALYSIS_WRITEOUT_INTERVAL 0.01;
-  ANALYSIS 1;
-  ANALYSIS_OUTPUT Analysis/Partial/partial_RUNNAME_NLOPART_dDIPAL/;
+#  ANALYSIS_WRITEOUT_INTERVAL 0.01;
+#  ANALYSIS 1;
+#  ANALYSIS_OUTPUT Analysis/Partial/partial_RUNNAME_NLOPART_dDIPAL/;
 
   % PDF settings
   % Sherpa internal:
@@ -90,8 +97,8 @@
   PDF_SET     MSTW2008nlo68cl.LHgrid;
 
   % collider setup
-  BEAM_1  2212; BEAM_ENERGY_1 3500;
-  BEAM_2  2212; BEAM_ENERGY_2 3500;
+  BEAM_1  2212; BEAM_ENERGY_1 Ecm;
+  BEAM_2  2212; BEAM_ENERGY_2 Ecm;
   K_PERP_MEAN_1 0.; K_PERP_SIGMA_1 0.;
   K_PERP_MEAN_2 0.; K_PERP_SIGMA_2 0.;
 
@@ -102,7 +109,7 @@
   Process 98 98 -> 24[a] -24[b] 5 -5;
     Decay 24[a] -> -11 12;
     Decay -24[b] -> 13 -14;
-  NLO_QCD_Mode Fixed_Order;
+  NLO_QCD_Mode NLOMODE;
   NLO_QCD_Part NLOPART;
   Loop_Generator LOOPGEN;
   Order (*,4);
@@ -127,53 +134,9 @@
 }(integration);
 
 (analysis){
-    BEGIN_ANALYSIS {
-        LEVEL MENLO
-        PATH_PIECE TTJ_2MT_NLOPART_fFSF_rRSF_rRNDSEED
-
-	% Select partons
-        PartSel {
-            InList FinalState;
-            OutList partons;
-            Qual Parton;
-        }
-	% Apply JetAlg to all partons
-        FastJets {
-            InList    partons
-            OutList   AllJets
-            PTMin     20.
-	    EtaMax    100.
-            Algorithm antikt
-      	    Scheme    E	    
-            R         0.5
-      	    p         1.0
-     	    Strategy  Best
-	    BTag      0
-        }
-
-	% Total XS
-	XS							         FinalState
-
-	% Inclusive jets
-	InclMulti		       0.    5.      5           LinErr  AllJets
-        JetPT       	               0.  400.     80  1  1  4  LinErr  AllJets
-	JetPT       	               1.  151.     75  1  1  4  LinErr  AllJets
-        JetEta       	       	      -5.    5.     20  1  1  4  LinErr  AllJets
-
-	% Exclusive jets
-	Multi			       0.    5.      5           LinErr  AllJets
-        JetPT       	               0.  400.     80  2  1  4  LinErr  AllJets
-        JetEta       	       	      -5.    5.     20  2  1  4  LinErr  AllJets
-
-	% Leptons
-        PT         -11                 0.   500.   100           LinErr  FinalState
-        PT   	    12                 0.   500.   100           LinErr  FinalState
-        Eta   	   -11                -4.     4.    20           LinErr  FinalState
-
-	PT2	   -11  12             0.   400.    80           LinErr  FinalState
-	Eta2	   -11  12            -5.     5.    20           LinErr  FinalState
-	Y2     	   -11  12            -5.     5.    20           LinErr  FinalState
-	Mass 	   -11  12             0.   200.    40           LinErr  FinalState
-
-    } END_ANALYSIS;
+  BEGIN_RIVET {
+   SPLIT_JETCONTS 1
+   USE_HEPMC_SHORT 1
+   -a ATLAS_sherpa_parton ATLAS_histo
+  } END_RIVET
 }(analysis)
