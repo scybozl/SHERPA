@@ -1,9 +1,10 @@
 (run){
   % general settings
   RUNNAME=TTJ_2MT
-  EVENTS 500000; ERROR 0.05;
+  EVENTS 500000; ERROR 0.07;
   RANDOM_SEED RNDSEED;
   BATCH_MODE=2;
+#  Finish_Optimization On;
   # RLIMIT_AS=32GB;
   # RLIMIT_BY_CPU=1;
   ANALYSIS = Rivet;
@@ -72,7 +73,7 @@
   WIDTH[25]=wH;
   ACTIVE[25]=0;
 
-  EVENT_OUTPUT=HepMC_Short[WWbB_25.10.16];
+  EVENT_OUTPUT=HepMC_Short[WWbB_04.11.16];
 
   % analysis settings
 #  ANALYSIS_WRITEOUT_INTERVAL 0.01;
@@ -137,6 +138,6 @@
   BEGIN_RIVET {
    SPLIT_JETCONTS 1
    USE_HEPMC_SHORT 1
-   -a ATLAS_sherpa_parton ATLAS_histo
+   -a ATLAS_sherpa_parton MC_DENNER
   } END_RIVET
 }(analysis)
